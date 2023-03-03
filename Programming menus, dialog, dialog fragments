@@ -1,0 +1,260 @@
+
+
+a) Creation of Menu
+
+activity_main.xml
+
+      <?xml version="1.0" encoding="utf-8"?>
+      <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".MainActivity">
+      <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Hello World!"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+MainActivity.java
+
+      package com.bignerdranch.android.prac6;
+      import androidx.appcompat.app.AppCompatActivity;
+      import android.os.Bundle;
+      import android.view.Menu;
+      import android.view.MenuInflater;
+      import android.view.MenuItem;
+      import android.widget.Toast;
+      public class MainActivity extends AppCompatActivity {
+      public boolean onCreateOptionsMenu(Menu menu)
+      {
+      MenuInflater mi=getMenuInflater();
+      mi.inflate(R.menu.menus,menu);
+      return true;
+      }
+      @Override
+      protected void onCreate(Bundle savedInstanceState)
+      {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      }
+      public boolean onOptionsItemSelected(MenuItem item)
+      {
+      switch (item.getItemId())
+      {
+      case R.id.newb:
+      Toast.makeText(this,"File Selected",Toast.LENGTH_SHORT).show();
+      return true;
+      case R.id.Share:
+      Toast.makeText(this,"Save As Selected",Toast.LENGTH_SHORT).show();
+      return true;
+      case R.id.delete:
+      Toast.makeText(this,"Delete Selected",Toast.LENGTH_SHORT).show();
+      return true;
+      case R.id.save:
+      Toast.makeText(this,"Save Selected",Toast.LENGTH_SHORT).show();
+      return true;
+      case R.id.open:
+      Toast.makeText(this,"Open Selected",Toast.LENGTH_SHORT).show();
+      return true;
+      case R.id.Exit: Toast.makeText(this,"Exit Selected",Toast.LENGTH_SHORT).show();
+      return true;
+      default:
+      Toast.makeText(this,"Default",Toast.LENGTH_SHORT).show();
+      return super.onOptionsItemSelected(item);
+      }
+      }
+      }
+
+
+
+
+
+
+menus.xml
+
+      <?xml version="1.0" encoding="utf-8"?>
+      <menu xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+      <item android:id="@+id/newb" android:title="File" />
+      <item android:id="@+id/open" android:title="Open" />
+      <item android:id="@+id/save" android:title="Save"/>
+      <item android:id="@+id/Share" android:title="Save As" />
+      <item android:id="@+id/delete" android:title="Delete" />
+      <item android:id="@+id/Exit" android:title="Close" />
+      </menu>
+
+
+
+
+
+
+
+
+
+
+
+
+b) Creation of Dialog
+
+activity_main.xml
+
+      <?xml version="1.0" encoding="utf-8"?>
+      <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:stretchColumns="1">
+      <Button android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:id="@+id/button_dialog"
+      android:onClick="onClickDialog"
+      android:text="Click to display an alert dialog"/>
+      <Button android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:id="@+id/button_progressdialog"
+      android:onClick="onClickProgressDialog"
+      android:text="Click to display a progress dialog"/>
+      <Button android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:id="@+id/button_datedialog"
+      android:onClick="onClickDateDialog"
+      android:text="Click to display a DatePicker dialog"/>
+      <Button android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:id="@+id/button_timedialog"
+      android:onClick="onClickTimeDialog"
+      android:text="Click to display a TImePicker dialog"/>
+      <TextView
+      android:id="@+id/textView_date"
+      android:layout_width="398dp"
+      android:layout_height="wrap_content"
+      android:text="TextView1"
+      android:textSize="50dp" />
+      <TextView
+      android:id="@+id/textView_time"
+      android:layout_width="400dp"
+      android:layout_height="wrap_content"
+      android:text="TextView2"
+      android:textSize="50dp" />
+      </LinearLayout>
+
+
+
+
+
+MainActivity.java
+
+      package com.bignerdranch.android.prac6b;
+      import androidx.appcompat.app.AppCompatActivity;
+      import android.app.AlertDialog;
+      import android.os.Bundle;
+      import android.app.DatePickerDialog;
+      import android.app.Dialog;
+      import android.app.ProgressDialog;
+      import android.app.TimePickerDialog;
+      import android.content.DialogInterface;
+      import android.view.View;
+      import android.widget.DatePicker;
+      import android.widget.TextView;
+      import android.widget.TimePicker;
+      import android.widget.Toast;
+      import java.util.Calendar;
+      public class MainActivity extends AppCompatActivity {
+      CharSequence[] items={"Android","Security","Cloud"};
+      boolean[] itemsChecked=new boolean[items.length];
+      @Override
+      protected void onCreate(Bundle savedInstanceState)
+      {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      }
+      public void onClickDialog(View v)
+      {
+      AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      builder.setTitle("This is a dialog with a simple Text");
+      builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+      @Override public void onClick(DialogInterface dialog, int id)
+      {
+      Toast.makeText(getBaseContext(), "OK Clicked", Toast.LENGTH_SHORT).show();
+      } });
+      builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+      {
+      @Override public void onClick(DialogInterface dialog, int id)
+      {
+      Toast.makeText(getBaseContext(), "Cancel Clicked", Toast.LENGTH_SHORT).show();
+      } });
+      builder.setMultiChoiceItems(items, itemsChecked, new
+      DialogInterface.OnMultiChoiceClickListener()
+      {
+      @Override public void onClick(DialogInterface dialog, int id, boolean isChecked)
+      {
+      Toast.makeText(getBaseContext(), items[id] + (isChecked ? " checked!" : "unchecked!"),
+      Toast.LENGTH_SHORT).show();
+      } });
+      AlertDialog dialog = builder.create(); builder.show();
+      }
+      public void onClickProgressDialog(View v) {
+      final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+      progressDialog.setTitle("Loading...");
+      progressDialog.setMessage("Please wait...");
+      progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+      progressDialog.setProgress(0);
+      progressDialog.setMax(100);
+      progressDialog.show();
+      new Thread(new Runnable() {
+      @Override
+      public void run() {
+      int progress = 0;
+      while (progress <= 100) {
+      try {
+      Thread.sleep(1000);
+      progressDialog.setProgress(progress);
+      progress += 20;
+      } catch (InterruptedException e) {
+      e.printStackTrace();
+      }
+      }
+      progressDialog.dismiss();
+      }
+      }).start();
+      }
+      public void onClickDateDialog(View v) {
+      final TextView textViewDate = (TextView) findViewById(R.id.textView_date);
+      Calendar calendar = Calendar.getInstance();
+      int year = calendar.get(Calendar.YEAR);
+      int month = calendar.get(Calendar.MONTH);
+      int day = calendar.get(Calendar.DAY_OF_MONTH);
+      DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
+      @Override
+      public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+      textViewDate.setText("Date: " + day + "/" + (month+1) + "/" + year);
+      }
+      }, year, month, day);
+      datePickerDialog.show();
+      }
+      public void onClickTimeDialog(View v) {
+      final TextView textViewTime = (TextView) findViewById(R.id.textView_time);
+      Calendar calendar = Calendar.getInstance();
+      int hour = calendar.get(Calendar.HOUR_OF_DAY);
+      int minute = calendar.get(Calendar.MINUTE);
+      TimePickerDialog timePickerDialog = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
+      @Override
+      public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+      textViewTime.setText("Time: " + hour + ":" + minute);
+      }
+      }, hour, minute, true);
+      timePickerDialog.show();
+      }
+      }
