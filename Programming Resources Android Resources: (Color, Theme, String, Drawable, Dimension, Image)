@@ -2,16 +2,16 @@ a) Defining color property
 
 colors.xml
 
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-<color name="purple_200">#BB86FC</color>
-<color name="purple_500">#FF6200EE</color>
-<color name="purple_700">#FF3700B3</color>
-<color name="teal_200">#FF03DAC5</color>
-<color name="teal_700">#FF018786</color>
-<color name="black">#FF000000</color>
-<color name="white">#EF7777</color>
-</resources>
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources>
+    <color name="purple_200">#BB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#EF7777</color>
+    </resources>
 
 
 
@@ -20,24 +20,24 @@ b) Defining theme property
 
 styles.xml
 
-<resources xmlns:tools="http://schemas.android.com/tools">
-<!-- Base application theme. -->
-<style name="Theme.Prac2" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-<!-- Primary brand color. -->
-<item name="colorPrimary">@color/purple_500</item>
-<item name="colorPrimaryVariant">@color/purple_700</item>
-<item name="colorOnPrimary">@color/white</item>
-<!-- Secondary brand color. -->
-<item name="colorSecondary">@color/teal_200</item>
-<item name="colorSecondaryVariant">@color/teal_700</item>
-<item name="colorOnSecondary">@color/black</item>
-<!-- Status bar color. -->
-<item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-<!-- Customize your theme here. -->
-<item name="android:background">#000000</item>
-<item name="android:textColor">#FFFFAA</item>
-</style>
-</resources>
+    <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Prac2" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!-- Primary brand color. -->
+    <item name="colorPrimary">@color/purple_500</item>
+    <item name="colorPrimaryVariant">@color/purple_700</item>
+    <item name="colorOnPrimary">@color/white</item>
+    <!-- Secondary brand color. -->
+    <item name="colorSecondary">@color/teal_200</item>
+    <item name="colorSecondaryVariant">@color/teal_700</item>
+    <item name="colorOnSecondary">@color/black</item>
+    <!-- Status bar color. -->
+    <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    <!-- Customize your theme here. -->
+    <item name="android:background">#000000</item>
+    <item name="android:textColor">#FFFFAA</item>
+    </style>
+    </resources>
 
 
 
@@ -45,17 +45,17 @@ c) Defining string property
 
 strings.xml
 
-<resources>
-<string name="app_name">Practical 2</string>
-<string name="Heading">Programming Resources</string>
-<string name="Description">
-Android is a mobile operating system developed by Google.
-It is based on a modified version of the Linux
-kernel and other open source software, and is
-designed primarily for touch screen mobile devices
-such as smart phones and tablets
-</string>
-</resources>
+    <resources>
+    <string name="app_name">Practical 2</string>
+    <string name="Heading">Programming Resources</string>
+    <string name="Description">
+    Android is a mobile operating system developed by Google.
+    It is based on a modified version of the Linux
+    kernel and other open source software, and is
+    designed primarily for touch screen mobile devices
+    such as smart phones and tablets
+    </string>
+    </resources>
 
 
 
@@ -70,12 +70,12 @@ Adding Images to Application created
 
 dim.xml
 
-<?xml version="1.0" encoding="utf-8" ?>
-<resources>
-<dimen name="textview_height">35dp</dimen>
-<dimen name="textview_width">150dp</dimen>
-<dimen name="font_size">26sp</dimen>
-</resources>
+    <?xml version="1.0" encoding="utf-8" ?>
+    <resources>
+    <dimen name="textview_height">35dp</dimen>
+    <dimen name="textview_width">150dp</dimen>
+    <dimen name="font_size">26sp</dimen>
+    </resources>
 
 
 
@@ -83,36 +83,36 @@ dim.xml
 
 e) activity_main.xml
 
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".MainActivity">
-<LinearLayout
-android:layout_width="409dp"
-android:layout_height="601dp"
-android:orientation="vertical"
-tools:layout_editor_absoluteX="1dp"
-tools:layout_editor_absoluteY="1dp"
-tools:ignore="MissingConstraints">
-<TextView
-android:id="@+id/textView7"
-android:layout_width="match_parent"
-android:layout_height="69dp"
-android:text="@string/Heading"
-android:background="@color/teal_200"/>
-<TextView
-android:id="@+id/textView8"
-android:layout_width="match_parent"
-android:layout_height="117dp"
-android:background="@color/purple_200"
-android:text="@string/Description" />
-<ImageView
-android:id="@+id/imageView2"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-app:srcCompat="@drawable/peakpx" />
-</LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <LinearLayout
+    android:layout_width="409dp"
+    android:layout_height="601dp"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    tools:ignore="MissingConstraints">
+    <TextView
+    android:id="@+id/textView7"
+    android:layout_width="match_parent"
+    android:layout_height="69dp"
+    android:text="@string/Heading"
+    android:background="@color/teal_200"/>
+    <TextView
+    android:id="@+id/textView8"
+    android:layout_width="match_parent"
+    android:layout_height="117dp"
+    android:background="@color/purple_200"
+    android:text="@string/Description" />
+    <ImageView
+    android:id="@+id/imageView2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:srcCompat="@drawable/peakpx" />
+    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
