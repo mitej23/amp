@@ -1,0 +1,324 @@
+5A: Calculator Application
+
+MainActivity.java
+
+      package com.bignerdranch.android.prac5;
+      import androidx.appcompat.app.AppCompatActivity;
+      import android.view.View;
+      import android.widget.*;
+      import static android.view.View.*;
+      import android.os.Bundle;
+      public class MainActivity extends AppCompatActivity {
+      EditText t1,t2;
+      Button b1,b2,b3,b4,b5;
+      TextView tv1;
+      int n1=0,n2=0;
+      String s1,s2;
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      t1 = (EditText) findViewById(R.id.et1);
+      t2 = (EditText) findViewById(R.id.et2);
+      b1 = (Button) findViewById(R.id.btnAdd);
+      b2 = (Button) findViewById(R.id.btnSub);
+      b3 = (Button) findViewById(R.id.btnMult);
+      b4 = (Button) findViewById(R.id.btnDiv);
+      b5 = (Button) findViewById(R.id.btnClear);
+      tv1 = (TextView) findViewById(R.id.tv1);
+      b1.setOnClickListener(new OnClickListener()
+      { @Override
+      public void onClick(View v)
+      {
+      try
+      {
+      String s1 = t1.getText().toString();
+      String s2 = t2.getText().toString();
+      n1 = Integer.parseInt(s1);
+      n2 = Integer.parseInt(s2);
+      int sum = n1 + n2;
+      tv1.setText("Addition ="+sum);
+      }
+      catch (NumberFormatException e) { }
+      }
+      });
+      b2.setOnClickListener(new OnClickListener()
+      { @Override
+      public void onClick(View v)
+      {
+      try
+      {
+      String s1 = t1.getText().toString();
+      String s2 = t2.getText().toString();
+      n1 = Integer.parseInt(s1);
+      n2 = Integer.parseInt(s2);
+      int sub = n1 - n2;
+      tv1.setText("Subtraction ="+sub);
+      }
+      catch (NumberFormatException e) { }
+      }
+      });
+      b3.setOnClickListener(new OnClickListener()
+      { @Override
+      public void onClick(View v)
+      {
+      try
+      {
+      String s1 = t1.getText().toString();
+      String s2 = t2.getText().toString();
+      n1 = Integer.parseInt(s1);
+      n2 = Integer.parseInt(s2);
+      int mul = n1 * n2;
+      tv1.setText("Multiplication ="+mul);
+      }
+      catch (NumberFormatException e) { }
+      }
+      });
+      b4.setOnClickListener(new OnClickListener()
+      { @Override
+      public void onClick(View v)
+      {
+      try
+      {
+      String s1 = t1.getText().toString();
+      String s2 = t2.getText().toString();
+      n1 = Integer.parseInt(s1);
+      n2 = Integer.parseInt(s2);
+      int div = n1 / n2;
+      tv1.setText("Division ="+div);
+      }
+      catch (NumberFormatException e) { }
+      }
+      });
+      b5.setOnClickListener(new OnClickListener()
+      { @Override
+      public void onClick(View v)
+      {
+      t1.setText(" ");
+      t2.setText(" ");
+      tv1.setText(" ");
+      }
+      });
+      }
+      }
+
+
+
+
+activity_main.xml
+
+      <?xml version="1.0" encoding="utf-8"?>
+      <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+      <EditText android:id="@+id/et1"
+      android:layout_width="match_parent"
+      android:layout_height="70dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:text="Input1" />
+      <EditText android:id="@+id/et2"
+      android:layout_width="match_parent"
+      android:layout_height="64dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:text="Input2" />
+      <Button android:id="@+id/btnAdd"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Addition" />
+      <Button android:id="@+id/btnSub"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Subtraction" />
+      <Button android:id="@+id/btnMult"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Multiplication" />
+      <Button android:id="@+id/btnDiv"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Division" />
+      <Button android:id="@+id/btnClear"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Clear" />
+      <TextView android:id="@+id/tv1"
+      android:layout_width="match_parent"
+      android:layout_height="63dp"
+      android:text="Output"
+      android:textColor="@android:color/background_dark"
+      android:textSize="18sp"
+      android:textStyle="bold"
+      app:fontFamily="casual" />
+      </LinearLayout>
+
+
+
+5B: AppBar
+
+1. Create AppBar
+
+Remove the default Action Bar.
+Go to values  themes.xml
+Change
+      <style name="Theme.Prac5b" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+      To
+      <style name="Theme.AppBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+
+
+
+
+2. Add a Toolbar to the activity's layout.
+
+Go to resources  layout
+Add new layout (toobar_layout, set root element to- androidx.appcompat.widget.Toolbar)
+
+toolbar_layout.xml
+
+      <?xml version="1.0" encoding="utf-8"?>
+      <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="@color/black"
+      android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+      app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+      android:id="@+id/t1">
+      </androidx.appcompat.widget.Toolbar>
+
+
+
+
+
+3. Include this layout to 
+
+activity_main.xml File.
+
+      <?xml version="1.0" encoding="utf-8"?>
+      <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".MainActivity"
+      android:orientation="vertical">
+      <include layout="@layout/toolbar_layout"/>
+      </LinearLayout>
+
+
+
+
+
+4. Setting the toolbar as default bar
+
+In the activity's onCreate() method, call the activity's setSupportActionBar() method, and pass the activity's toolbar. This method sets the toolbar as the app bar for the activity.
+
+      public class MainActivity extends AppCompatActivity {
+      private Toolbar t2;
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      t2=findViewById(R.id.t1);
+      setSupportActionBar(t2);
+      }
+
+
+
+
+
+5. Add and handle actions
+
+The app bar allows you to add buttons for user actions. This feature lets you put the most important actions for the current context right at the top of the app
+All action buttons and other items available in the action overflow are defined in an XML menu resource. To add actions to the action bar, create a new XML file in your project's res/menu/ directory.
+Add an <item> element for each item you want to include in the action bar, as shown in this code example of a menu XML file:
+Add menu to appbar
+• Right click on res folder add new android resources file
+• Name it app_bar_menu
+• Set resource type-menu
+
+app_bar_menu.xml
+
+      <menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto" >
+      <item
+      android:id="@+id/action_search"
+      android:title="Search"
+      android:icon="@drawable/ic_search"
+      app:showAsAction="ifRoom"/>
+      <item
+      android:id="@+id/action_setting"
+      android:title="Setting"
+      android:icon="@drawable/ic_setting"
+      app:showAsAction="ifRoom"/>
+      <item
+      android:id="@+id/action_about"
+      android:title="About"
+      app:showAsAction="never"/>
+      <item
+      android:id="@+id/action_logout"
+      android:title="Logout"
+      app:showAsAction="never"/>
+      </menu>
+
+
+
+
+
+6. To add this Menu to AppBar(Action Bar)
+When the user selects one of the app bar items, the system calls your activity's onOptionsItemSelected() callback method, and passes a MenuItem object to indicate which item was clicked. In your implementation of onOptionsItemSelected(), call the MenuItem.getItemId() method to determine which item was pressed. The ID returned matches the value you declared in the corresponding <item> element's android:id attribute.
+
+      package com.example.appbar;
+      import androidx.annotation.NonNull;
+      import androidx.appcompat.app.AppCompatActivity;
+      import android.os.Bundle;
+      import android.view.Menu;
+      import android.view.MenuInflater;
+      import android.view.MenuItem;
+      import android.widget.Toast;
+      import androidx.appcompat.widget.Toolbar;
+      public class MainActivity extends AppCompatActivity {
+      private Toolbar t2;
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      t2=findViewById(R.id.t1);
+      setSupportActionBar(t2);
+      }
+      @Override
+      public boolean onCreateOptionsMenu(Menu menu) {
+      MenuInflater mi=getMenuInflater();
+      mi.inflate(R.menu.app_bar_menu,menu);
+      return super.onCreateOptionsMenu(menu);
+      }
+      @Override
+      public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+      switch (item.getItemId()) {
+      case R.id.action_search:
+      Toast.makeText(this, "search menu click", Toast.LENGTH_SHORT).show();
+      return true;
+      case R.id.action_setting:
+      Toast.makeText(this, "setting menu click", Toast.LENGTH_SHORT).show();
+      return true;
+      case R.id.action_about:
+      Toast.makeText(this, "About menu click", Toast.LENGTH_SHORT).show();
+      return true;
+      case R.id.action_logout:
+      Toast.makeText(this, "Logout click", Toast.LENGTH_SHORT).show();
+      return true;
+      default:
+      return super.onOptionsItemSelected(item);
+      }
+      }
+      }
+
+
+
+
+
+add ic_search.xml and ic_setting.xml to drawable folder
