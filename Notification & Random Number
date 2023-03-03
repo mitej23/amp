@@ -1,0 +1,128 @@
+a) Create an android application to generate notification
+
+MainActivity.java
+
+      package com.bignerdranch.android.prac9a;
+      import androidx.appcompat.app.AppCompatActivity;
+      import androidx.core.app.ActivityCompat;
+      import androidx.core.app.NotificationCompat;
+      import androidx.core.app.NotificationManagerCompat;
+      import android.app.NotificationChannel;
+      import android.app.NotificationManager;
+      import android.content.pm.PackageManager;
+      import android.os.Build;
+      import android.os.Bundle;
+      import android.view.View;
+      import android.widget.Button;
+      import java.nio.channels.Channel;
+      public class MainActivity extends AppCompatActivity {
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      String description = "This is description";
+      int importance = NotificationManager.IMPORTANCE_DEFAULT;
+      NotificationChannel notificationChannel = new NotificationChannel("My Notification", "Simple Notification", importance);
+      notificationChannel.setDescription(description);
+      NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+      notificationManager.createNotificationChannel(notificationChannel);
+      }
+      NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "My Notification");
+      builder.setContentTitle("Notification from Yash Gajakosh");
+      builder.setSmallIcon(R.drawable.ic_launcher_background);
+      builder.setAutoCancel(true);
+      builder.setContentText("Small Notification");
+      NotificationManagerCompat manager = NotificationManagerCompat.from(this);
+      if (ActivityCompat.checkSelfPermission(this, "android.permission.POST_NOTIFICATIONS") != PackageManager.PERMISSION_GRANTED) {
+      // TODO: Consider calling
+      // ActivityCompat#requestPermissions
+      // here to request the missing permissions, and then overriding
+      // public void onRequestPermissionsResult(int requestCode, String[] permissions,
+      // int[] grantResults)
+      // to handle the case where the user grants the permission. See the documentation
+      // for ActivityCompat#requestPermissions for more details.
+      return;
+      }
+      manager.notify(999, builder.build());
+      }
+      }
+
+
+
+
+
+
+
+b) Create an android application to generate any random number with some time delay using thread.
+
+activity_main.xml
+
+      <?xml version="1.0" encoding="utf-8"?>
+      <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".MainActivity">
+      <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+      <Button
+      android:id="@+id/btnRandom"
+      android:layout_width="match_parent"
+      android:layout_height="58dp"
+      android:background="@color/purple_200"
+      android:text="Generate Random" />
+      <TextView
+      android:id="@+id/lbl1"
+      android:layout_width="match_parent"
+      android:layout_height="55dp"
+      android:text="Output"
+      android:textColor="@color/purple_700"
+      android:textSize="24sp"
+      android:textStyle="bold" />
+      </LinearLayout>
+      </RelativeLayout>
+
+
+
+MainActivity.java
+
+      package com.bignerdranch.android.prac9b;
+      import androidx.appcompat.app.AppCompatActivity;
+      import android.os.Bundle;
+      import androidx.appcompat.app.AppCompatActivity;
+      import android.graphics.Color;
+      import android.os.Bundle;
+      import android.view.View;
+      import android.widget.Button;
+      import android.widget.EditText;
+      import android.widget.QuickContactBadge;
+      import android.widget.TextView;
+      import android.widget.Toast;
+      import java.util.Random;
+      public class MainActivity extends AppCompatActivity {
+      Button btn1;
+      TextView tv1;
+      int i = 0;
+      int ran = 0;
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      btn1 = (Button) findViewById(R.id.btnRandom);
+      tv1 = (TextView) findViewById(R.id.lbl1);
+      btn1.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+      try {
+      int ran = (int) (Math.random() * 100);
+      tv1.setText("Number=" + ran);
+      } catch (Exception ex) {
+      }
+      }
+      });
+      }
+      }
