@@ -1,0 +1,202 @@
+
+
+a) The Android Intent Class, Using Events and Event Listeners
+
+activity_main.xml
+
+      <?xml version="1.0" encoding="utf-8"?>
+      <RelativeLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".MainActivity">
+      <EditText
+      android:id="@+id/txt1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="132dp"
+      android:ems="10"
+      android:hint="Enter Data"
+      android:inputType="textPersonName" />
+      <Button
+      android:id="@+id/btn1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:text="Send" />
+      </RelativeLayout>
+
+
+
+
+
+MainActivity.java
+
+      package com.bignerdranch.android.prac7;
+      import android.content.Intent;
+      import androidx.appcompat.app.AppCompatActivity;
+      import android.os.Bundle;
+      import android.view.View;
+      import android.widget.Button;
+      import android.widget.EditText;
+      public class MainActivity extends AppCompatActivity {
+      EditText t1;
+      Button b1;
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+      t1=(EditText)findViewById(R.id.txt1);
+      b1=(Button)findViewById(R.id.btn1);
+      b1.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+      String data=t1.getText().toString();
+      Intent intent=new Intent(getApplicationContext(),Data_Receive.class);
+      intent.putExtra("data",data);
+      startActivity(intent);
+      }
+      });
+      }
+      }
+
+
+
+
+
+activity_data_receive.xml
+
+      <?xml version="1.0" encoding="utf-8"?>
+      <RelativeLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".Data_Receive">
+      <TextView
+      android:id="@+id/tv1"
+      android:layout_width="100dp"
+      android:layout_height="50dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
+      android:layout_marginStart="152dp"
+      android:layout_marginLeft="152dp"
+      android:layout_marginTop="161dp"
+      android:layout_marginEnd="132dp"
+      android:layout_marginRight="132dp" />
+      </RelativeLayout>
+
+
+
+
+
+Data_Receive.java
+
+      package com.bignerdranch.android.prac7;
+      import androidx.appcompat.app.AppCompatActivity;
+      import android.content.Intent;
+      import android.os.Bundle;
+      import android.widget.TextView;
+      public class Data_Receive extends AppCompatActivity {
+      TextView t1;
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_data_receive);
+      t1 = (TextView) findViewById(R.id.tv1);
+      Intent intent = getIntent();
+      String data = intent.getStringExtra("data");
+      t1.setText(data);
+      }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+b) Create an android application that opens the website www.google.com in the browser on the click of a button using intents
+
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MainActivity">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+<EditText
+android:hint="Type URL Here"
+android:id="@+id/website"
+android:layout_width="fill_parent"
+android:layout_height="75dp"
+android:ems="5">
+</EditText>
+<Button
+android:id="@+id/runWebsite"
+android:layout_width="fill_parent"
+android:layout_height="45dp"
+android:text="Run WebSite on Browser" />
+</LinearLayout>
+</RelativeLayout>
+
+
+
+
+
+
+MainActivity.java
+
+package com.bignerdranch.android.prac7b;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.net.Uri;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+public class MainActivity extends AppCompatActivity {
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+Button runWebsite = (Button) findViewById(R.id.runWebsite);
+runWebsite.setOnClickListener(new View.OnClickListener() {
+public void onClick(View view) {
+EditText website = (EditText) findViewById(R.id.website);
+String strURL = website.getText().toString();
+if (strURL.indexOf("https://www") < 0) {
+strURL = "https://www." + strURL;
+}
+Intent implicit = new Intent(Intent.ACTION_VIEW, Uri.parse(strURL));
+startActivity(implicit);
+}
+});
+}
+}
