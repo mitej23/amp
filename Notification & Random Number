@@ -90,39 +90,51 @@ activity_main.xml
 
 MainActivity.java
 
-      package com.bignerdranch.android.prac9b;
-      import androidx.appcompat.app.AppCompatActivity;
-      import android.os.Bundle;
-      import androidx.appcompat.app.AppCompatActivity;
-      import android.graphics.Color;
-      import android.os.Bundle;
-      import android.view.View;
-      import android.widget.Button;
-      import android.widget.EditText;
-      import android.widget.QuickContactBadge;
-      import android.widget.TextView;
-      import android.widget.Toast;
-      import java.util.Random;
-      public class MainActivity extends AppCompatActivity {
-      Button btn1;
-      TextView tv1;
-      int i = 0;
-      int ran = 0;
-      @Override
-      protected void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.activity_main);
-      btn1 = (Button) findViewById(R.id.btnRandom);
-      tv1 = (TextView) findViewById(R.id.lbl1);
-      btn1.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-      try {
-      int ran = (int) (Math.random() * 100);
-      tv1.setText("Number=" + ran);
-      } catch (Exception ex) {
-      }
-      }
-      });
-      }
-      }
+                  package com.bignerdranch.android.prac9b;
+
+                  import androidx.appcompat.app.AppCompatActivity;
+
+                  import android.os.Bundle;
+                  import android.os.Handler;
+                  import android.os.Looper;
+                  import android.view.View;
+                  import android.widget.Button;
+                  import android.widget.TextView;
+                  import android.widget.Toast;
+
+                  import java.util.Random;
+
+                  public class MainActivity extends AppCompatActivity {
+
+                      private Button btn1;
+                      private TextView tv1;
+                      private Handler handler;
+                      private Random random;
+
+                      @Override
+                      protected void onCreate(Bundle savedInstanceState) {
+                          super.onCreate(savedInstanceState);
+                          setContentView(R.layout.activity_main);
+
+                          btn1 = findViewById(R.id.btnRandom);
+                          tv1 = findViewById(R.id.lbl1);
+
+                          handler = new Handler(Looper.getMainLooper());
+                          random = new Random();
+
+                          btn1.setOnClickListener(new View.OnClickListener() {
+                              @Override
+                              public void onClick(View v) {
+                                  tv1.setText("Generating a random number with a 3 second delay...");
+                                  handler.postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          int ran = random.nextInt(100);
+                                          tv1.setText("Number = " + ran);
+                                      }
+                                  }, 3000);
+                              }
+                          });
+                      }
+                  }
+
