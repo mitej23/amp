@@ -122,19 +122,32 @@ MainActivity.java
                           handler = new Handler(Looper.getMainLooper());
                           random = new Random();
 
-                          btn1.setOnClickListener(new View.OnClickListener() {
-                              @Override
-                              public void onClick(View v) {
-                                  tv1.setText("Generating a random number with a 3 second delay...");
-                                  handler.postDelayed(new Runnable() {
-                                      @Override
-                                      public void run() {
-                                          int ran = random.nextInt(100);
-                                          tv1.setText("Number = " + ran);
-                                      }
-                                  }, 3000);
-                              }
-                          });
+                         btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(1000);
+
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    tv1.setText("num: " + Math.random());
+                                }
+                            });
+                        }
+                    }).start();
+
+
+            }
+        });
                       }
                   }
 
